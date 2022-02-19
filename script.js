@@ -23,20 +23,14 @@ const createBoard = (squaresContainer) => {
   }
 };
 
-const isGameOver = () => {
-  let result = false;
-  winsConditions.forEach((winCondition) => {
-    if (
+const isGameOver = () => (
+  winsConditions.some((winCondition) => (
       board[winCondition[0]] === board[winCondition[1]] &&
       board[winCondition[0]] === board[winCondition[2]] &&
       board[winCondition[0]] !== ''
-    ) {
-      result = true;
-    }
-  });
-
-  return result;
-};
+    )
+  )
+);
 
 
 const gamePlay = ({ target }) => {
@@ -76,10 +70,13 @@ const startOfTheGame = () => {
   board = ['', '', '', '', '', '', '', '', ''];
   const squaresContainer = document.querySelector('.squares-container');
   const initialPlayer = document.querySelector('.player-turn');
+  const screenGameOver = document.querySelector('.screen-game-over');
   
   squaresContainer.innerHTML = '';
   initialPlayer.textContent = players[playerTurn];
   createBoard(squaresContainer);
+  screenGameOver.style.display = 'none';
+
 
   const squares = document.querySelectorAll('.square');
 
@@ -92,11 +89,6 @@ startOfTheGame();
 
 
 const buttonReset = document.querySelector('.play-again');
-buttonReset.addEventListener('click', () => {
-  const squaresContainer = document.querySelector('.squares-container');
-  
+buttonReset.addEventListener('click', () => {  
   startOfTheGame();
-  const screenGameOver = document.querySelector('.screen-game-over');
-  screenGameOver.style.display = 'none';
-  document.querySelector('.player-turn').textContent = players[playerTurn];
 });
