@@ -1,20 +1,7 @@
-const squaresContainer = document.querySelector('.squares-container');
-
-const createBoard = () => {
-  for (let index = 0; index < 9; index += 1) {
-    const square = document.createElement('div');
-    square.classList.add('square');
-    square.id = index;
-    squaresContainer.appendChild(square);
-  }
-};
-
-createBoard();
-
 let playerTurn = 0;
 let gameOver = false;
+let wasATie = false;
 let board = ['', '', '', '', '', '', '', '', ''];
-const squares = document.querySelectorAll('.square');
 const players = ['X', 'O'];
 const winsConditions = [
   [0, 1, 2],
@@ -26,6 +13,15 @@ const winsConditions = [
   [0, 4, 8],
   [2, 4, 6],
 ];
+
+const createBoard = (squaresContainer) => {
+  for (let index = 0; index < 9; index += 1) {
+    const square = document.createElement('div');
+    square.classList.add('square');
+    square.id = index;
+    squaresContainer.appendChild(square);
+  }
+};
 
 const isGameOver = () => {
   let result = false;
@@ -62,22 +58,40 @@ const gamePlay = ({ target }) => {
       } else {
         playerTurn = 1;
       }
+      wasATie = board.every((square) => square !== '');
+      if (wasATie) {
+        const screenGameOver = document.querySelector('.screen-game-over');
+        screenGameOver.style.display = 'flex';
+        const tieMessage = document.querySelector('.display-player-winner');
+        tieMessage.textContent = 'Deu velha!';
+      }
+
       document.querySelector('.player-turn').textContent = players[playerTurn];
     }
   }
 }
 
-squares.forEach((square) => {
-  square.addEventListener('click', gamePlay);
-});
+const startOfTheGame = () => {
+  const squaresContainer = document.querySelector('.squares-container');
+  createBoard(squaresContainer);
+  const squares = document.querySelectorAll('.square');
+
+  squares.forEach((square) => {
+    square.addEventListener('click', gamePlay);
+  });
+};
+
+startOfTheGame();
+
 
 const buttonReset = document.querySelector('.play-again');
 buttonReset.addEventListener('click', () => {
+  const squaresContainer = document.querySelector('.squares-container');
   squaresContainer.innerHTML = '';
   playerTurn = 0;
   gameOver = false;
   board = ['', '', '', '', '', '', '', '', ''];
-  createBoard();
+  startOfTheGame();
   const screenGameOver = document.querySelector('.screen-game-over');
   screenGameOver.style.display = 'none';
   document.querySelector('.player-turn').textContent = players[playerTurn];
