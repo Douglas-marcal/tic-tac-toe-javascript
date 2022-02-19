@@ -46,12 +46,11 @@ const gamePlay = ({ target }) => {
         winnerMessage.textContent =`Jogador ${players[playerTurn]} venceu.`
         return
       }
-      if (playerTurn) {
-        playerTurn = 0;
-      } else {
-        playerTurn = 1;
-      }
+
+      (playerTurn) ? (playerTurn = 0) : (playerTurn = 1);
+
       wasATie = board.every((square) => square !== '');
+
       if (wasATie) {
         const screenGameOver = document.querySelector('.screen-game-over');
         screenGameOver.style.display = 'flex';
