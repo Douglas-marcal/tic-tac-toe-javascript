@@ -1,0 +1,64 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+}
+
+.main-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.squares-container {
+  background-color: aquamarine;
+  display: flex;
+  flex-wrap: wrap;
+  min-width: 300px;
+  min-height: 300px;
+}
+
+.square {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-basis: 30%;
+  flex-grow: 1;
+  height: 100px;
+  border: 1px solid black;
+  font-size: xx-large;
+}
+
+.screen-game-over {
+  background-color: rgba(0, 0, 0, 0.911);
+  position: absolute;
+  min-width: 100%;
+  min-height: 100%;
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  gap: 20px;
+}
+
+.display-player-winner {
+  font-size: xx-large;
+  background-color: black;
+  color: white;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.play-again {
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: yellow;
+}
