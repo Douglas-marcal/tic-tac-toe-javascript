@@ -38,7 +38,6 @@ const isGameOver = () => {
   return result;
 };
 
-document.querySelector('.player-turn').textContent = players[playerTurn];
 
 const gamePlay = ({ target }) => {
   if (target.textContent === '') {
@@ -72,8 +71,16 @@ const gamePlay = ({ target }) => {
 }
 
 const startOfTheGame = () => {
+  playerTurn = 0;
+  gameOver = false;
+  board = ['', '', '', '', '', '', '', '', ''];
   const squaresContainer = document.querySelector('.squares-container');
+  const initialPlayer = document.querySelector('.player-turn');
+  
+  squaresContainer.innerHTML = '';
+  initialPlayer.textContent = players[playerTurn];
   createBoard(squaresContainer);
+
   const squares = document.querySelectorAll('.square');
 
   squares.forEach((square) => {
@@ -87,16 +94,9 @@ startOfTheGame();
 const buttonReset = document.querySelector('.play-again');
 buttonReset.addEventListener('click', () => {
   const squaresContainer = document.querySelector('.squares-container');
-  squaresContainer.innerHTML = '';
-  playerTurn = 0;
-  gameOver = false;
-  board = ['', '', '', '', '', '', '', '', ''];
+  
   startOfTheGame();
   const screenGameOver = document.querySelector('.screen-game-over');
   screenGameOver.style.display = 'none';
   document.querySelector('.player-turn').textContent = players[playerTurn];
-  const squares = document.querySelectorAll('.square');
-  squares.forEach((square) => {
-    square.addEventListener('click', gamePlay);
-  });
 });
