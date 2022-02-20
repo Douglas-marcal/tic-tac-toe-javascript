@@ -2,10 +2,12 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
   min-height: 100vh;
+  background-color: black;
 }
 
 .main-container {
@@ -18,7 +20,7 @@ body {
 }
 
 .squares-container {
-  background-color: aquamarine;
+  background-color: white;
   display: flex;
   flex-wrap: wrap;
   min-width: 300px;
@@ -37,7 +39,7 @@ body {
 }
 
 .screen-game-over {
-  background-color: rgba(0, 0, 0, 0.911);
+  background-color: #494949e3;
   position: absolute;
   min-width: 100%;
   min-height: 100%;
@@ -61,4 +63,9 @@ body {
   padding: 10px;
   border-radius: 8px;
   background-color: yellow;
+}
+
+.player-turn-container {
+  color: white;
+  font-size: x-large;
 }
