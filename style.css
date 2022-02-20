@@ -21,6 +21,7 @@ body {
 
 .squares-container {
   background-color: white;
+  box-shadow: 0px 0px 20px #1aff01;
   display: flex;
   flex-wrap: wrap;
   min-width: 300px;
